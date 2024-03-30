@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>F o r m u l a r i</title>
+    <style>
+        body {
+            background-color: rgb(49, 39, 39);
+            color: aliceblue;
+        }
+
+        h1,h3,h5 {
+            color: rgb(255, 225, 0);
+            text-align: center;
+        }
+       
+
+
+        .divBoton {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+        .divBoton button {
+            background-color: red;
+            border-radius: 5px;
+            padding: 10px;
+            margin-left: 10px;
+        }
+
+        .form {
+            background-color: rgb(68, 35, 35);
+            width: 40%;
+            margin: auto;
+            border-radius: 10px;
+            border: solid 6px black;
+            padding: 15px;
+        }
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .input-container input {
+            margin-bottom: 5px; /* Espacio entre el input y el mensaje de error */
+        }
+
+        .error {
+            color: rgb(207, 29, 29);
+            margin-top: 5px; /* Espacio entre el input y el mensaje de error */
+            display: none; /* Inicialmente oculto */
+            font-weight: bold; /* Agregamos negrita */
+
+        }
+
+        .radio-container {
+            display: flex;
+            align-items: center; /* Alinea verticalmente los elementos en el contenedor */
+        }
+
+        .radio-container label {
+            margin-right: 20px; /* Espacio entre los botones de opción */
+        }
+
+        .radio-buttons {
+            margin-left: 10px; /* Espacio entre el texto y los botones de opción */
+        }
+        .texte1 {
+            margin-top: 100px;
+        }
+
+        .icon {
+            font-size: 30px;
+            cursor: pointer;
+            transition: transform 0.2s, font-size 0.2s; /* Agregamos la transición de font-size */
+        }
+
+       
+      /* Estilos para ocultar los input de tipo radio */
+input[type="radio"].satisfaction-input {
+    display: none;
+}
+
+/* Estilos para los iconos */
+.satisfaction-input:checked + .icon {
+    font-size: 60px;
+    color: blue;
+}
+.satisfaction-icons {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+    margin-top: 20px; /* Espacio superior */
+}
+label:nth-of-type(5) {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+
+}
+.iconsdiv {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center; /* Centra los elementos verticalmente */
+}
+.calle {
+    height: 20px;
+    margin-top: 10px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+/* Ocultar el texto predeterminado */
+input[type="file"]::-webkit-file-upload-button {
+    visibility: hidden;
+}
+input[type="file"]::before {
+    content: 'Seleccionar archivo'; /* Texto personalizado */
+    display: inline-block;
+    background: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    outline: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+input[type="file"]::-webkit-file-upload-button:hover::before {
+    background: #45a049; /* Cambia el color de fondo al pasar el mouse */
+}
+.nombreApellido {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px; /* Ajustar el espacio entre los campos */
+    }
+
+    .nombreApellido > div {
+        width: 48%; /* Ancho del 48% para que quepa en el contenedor */
+        display: inline-block;
+    }
+
+    .input-container input {
+        margin-bottom: 5px; /* Espacio entre el input y el mensaje de error */
+    }
+/*colores*/
+    .color-range {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="range"] {
+            width: 80%;
+            margin: 10px 0;
+        }
+
+        #color-preview {
+            border-radius: 15px;
+            border: 3px solid #652828;
+            padding: 20px;
+        }
+
+
+
+
+  
+
+    </style>
+</head>
+<body> <!-- borre esto <body onload="marcar();">   -->
+<h1> F o r m u l a r i </h1>
+<div class="form">
+    <form novalidate onsubmit="return validarForm();" id="color-preview">
+
+        <H3> REGISTRE D'USUARIS</H3>
+        <div class="nombreApellido">
+            <div>
+                <label id="nom">
+                <texte class="texte1">* Nom</texte>
+                <input type="text" name="nombre" placeholder="Nom" >
+                    <div class="input-container">
+                        <error class="error" id="errorNombre"></error> <!-- Movido debajo del input -->
+                    </div>
+                </label>
+            </div>
+        
+    <div>
+        <label id="apellidos">
+            <texte class="texte1">* Cognoms</texte>
+            <input type="text" name="apellidos" placeholder="Cognoms" >
+                <div class="input-container">
+                    <error class="error" id="errorApellidos"></error> <!-- Movido debajo del input -->
+                </div>
+        </label>
+    </div> 
+    
+
+    </div>
+    
+    <br>
+
+        
+<div class="calle">
+    <!-- si el campo selectet tiene una longitud que es 0  hay que  asegurarlo-->
+        <label for="tipo_via">Via:</label>
+<select id="tipo_via" name="tipo_via">
+    <option value="">Trii una via</option>
+    <option value="calle">Calle</option>
+<option value="avenida">Avenida</option>
+<option value="camino">Camino</option>
+<option value="plaza">Plaza</option>
+<option value="paseo">Paseo</option>
+<option value="bulevar">Bulevar</option>
+<option value="carretera">Carretera</option>
+<option value="callejón">Callejón</option>
+<option value="rambla">Rambla</option>
+<option value="vía">Vía</option>
+<option value="vial">Vial</option>
+<option value="travesía">Travesía</option>
+<option value="pasaje">Pasaje</option>
+<option value="carrer">Carrer </option>
+<option value="rúa">Rúa</option>
+<option value="alameda">Alameda</option>
+<option value="paseo marítimo">Paseo Marítimo</option>
+<option value="cuesta">Cuesta</option>
+<option value="senda">Senda</option>
+<option value="ramal">Ramal</option>
+<option value="vía pública">Vía Pública</option>
+<option value="bajada">Bajada</option>
+<option value="subida">Subida</option>
+<option value="vereda">Vereda</option>
+
+    
+    <!-- Agrega más opciones según sea necesario -->
+</select>
+
+<label for="nombre_via"></label>
+<input type="text" id="nombre_via" name="nombre_via" placeholder="Nombre de la via">
+
+    <label for="codigo_postal"></label>
+    <input type="text" id="codigo_postal" name="codigo_postal" placeholder="Código Postal">
+
+</div>
+<br>
+<label id="opció">
+    <div class="radio-container">
+        <texte class="texte3">* Resident a les Illes Balears:</texte>
+        <div class="radio-buttons">
+            <label><input type="radio" name="opció" value="Resident"> Si</label>
+            <label><input type="radio" name="opció" value="No Resident"> No</label>
+        </div>
+    </div>
+    <br> <!-- Agregamos un salto de línea -->
+    <error class="error" id="errorRadio"></error> <!-- Mensaje de error debajo de los botones de opción -->
+</label>
+
+        <label id="mail">
+            <texte class="texte2">* Correu electrònic</texte>
+            <div class="input-container">
+                <input type="text" name="email" placeholder="Email">
+                <error class="error" id="errorMail"></error> <!-- Movido debajo del input -->
+            </div>
+        </label>
+
+        
+
+        <label id="fechaNacimiento">
+            <texte class="texte3">* Data de naixement:</texte>
+            <div class="input-container">
+                <input type="text" id="fechaNacimientoInput" name="fechaNacimiento" placeholder="(format AAAA-MM-DD)">
+                <error class="error" id="mensajeErrorFormato">El format ha de ser AAAA-MM-DD</error> 
+                <error class="error" id="mensajeErrorEdad">Has de ser major de 18 anys</error> 
+            </div>
+        </label>
+
+        <div>
+            <label for="imagen">Selecciona una imatge:</label>
+<input type="file" id="imagen" name="imagen" accept="image/*">
+<error class="error" id="errorFoto"></error> <!-- Mensaje de error para la foto -->
+
+
+        </div>
+        <label>
+    <div class="privacidad-container">
+        <br>
+        <input type="checkbox" name="politicasPrivacidad" required>
+        <texte>Acepto les polítiques d'en Ramon</texte>
+        <error class="error" id="errorPoliticas">Debes aceptar las políticas de Ramon</error>
+        <!-- Mensaje de error para la política de privacidad -->
+    </div>
+</label>
+
+        
+
+        
+        <DIV class="iconsdiv">
+        <label>
+            <input type="radio" name="satisfaccion" value="1" class="satisfaction-input">
+            <span class="icon">&#128545;</span> 
+        </label>
+        <label>
+            <input type="radio" name="satisfaccion" value="2" class="satisfaction-input">
+            <span class="icon">&#128577;</span>
+        </label>
+        <label>
+            <input type="radio" name="satisfaccion" value="3" class="satisfaction-input">
+            <span class="icon">&#128528;</span> 
+        </label>
+        <label>
+            <input type="radio" name="satisfaccion" value="4" class="satisfaction-input"> 
+            <span class="icon">&#128578;</span>
+        </label>
+        <label>
+            <input type="radio" name="satisfaccion" value="5" class="satisfaction-input">
+            <span class="icon">&#128512;</span>
+        </label>
+    </DIV>
+
+    
+
+
+        <div class="divBoton">
+            <button type="reset">Neteja Formulari</button>
+            <button type="submit">Enviar</button>
+           <!-- <button type="button">Canceŀlar</button> -->
+        </div>
+        <h5>Modifica els colors als fons del formulari</h5>
+    <div class="color-range">
+        <label for="color">Color del formulari:</label>
+        <input type="range" id="red" name="red" min="0" max="255" value="0" step="1">
+        <input type="range" id="green" name="green" min="0" max="255" value="0" step="1">
+        <input type="range" id="blue" name="blue" min="0" max="255" value="0" step="1">
+    </div>
+    </form>
+</div>
+<script>
+    /*
+    const marcar = () => {
+        let elements = document.querySelectorAll("div input");
+        for (let e = 0; e < elements.length; e++) elements[e].checked = true;
+    }*/
+
+    const validar = (selector, regular, errorMessageId) => {
+        let element = document.querySelector(selector + " input");
+        let message = document.getElementById(errorMessageId);
+        if (element.value.length === 0) {
+            message.textContent = "Introdueix el teu nom";
+            element.style.boxShadow = "0 0 5px red"; // Agregamos sombra roja
+            message.style.display = "block";
+            return false;
+        }
+        if (!regular.test(element.value)) {
+            message.textContent = "Valor incorrecto";
+            element.style.boxShadow = "0 0 5px red"; // Agregamos sombra roja
+            message.style.display = "block";
+            return false;
+        }
+        message.textContent = "";
+        message.style.display = "none";
+        element.style.boxShadow = "none"; // Quitamos la sombra
+        return true;
+         
+    }
+
+    /* Validación de los campos en tiempo real */
+const validacionEnTiempoReal = (selector, regular, errorMessageId) => {
+    let inputElement = document.querySelector(selector + " input");
+    inputElement.addEventListener('input', () => {
+        validar(selector, regular, errorMessageId);
+    });
+}
+
+/* Agregar eventos de validación en tiempo real a los campos */
+validacionEnTiempoReal("#nom", /^[a-zA-ZÀ-ÿ']{3,}(?: [a-zA-ZÀ-ÿ']{2,}){0,2}(?: [a-zA-ZÀ-ÿ']{3,}){1,2}$/, "errorNombre");
+validacionEnTiempoReal("#apellidos", /^[a-zA-ZÀ-ÿ']{3,}(?: [a-zA-ZÀ-ÿ']{2,}){0,2}(?: [a-zA-ZÀ-ÿ']{3,}){1,2}$/, "errorApellidos");
+validacionEnTiempoReal("#mail", /[a-z]{3,}(\d*|(([._])[a-z]+)?(\3[a-z]+)?)@[a-z]{3,}[.][a-z]{2,4}/, "errorMail");
+validacionEnTiempoReal("#fechaNacimiento", /^\d{4}-\d{2}-\d{2}$/, "mensajeErrorFormato");
+
+// Agregar validación en tiempo real para el campo de la foto
+const validacionFotoEnTiempoReal = () => {
+    let fileInput = document.getElementById('imagen');
+    let errorMessage = document.getElementById('errorFoto');
+    
+    fileInput.addEventListener('input', () => {
+        if (fileInput.files.length === 0) {
+            errorMessage.textContent = "Debes subir una foto.";
+            errorMessage.style.display = "block";
+        } else {
+            errorMessage.textContent = "";
+            errorMessage.style.display = "none";
+        }
+    });
+}
+
+
+
+
+// Llamar a la función para agregar validación en tiempo real al campo de la foto
+validacionFotoEnTiempoReal();
+
+
+document.addEventListener("DOMContentLoaded", function() {
+            // Función para validar las políticas de privacidad en tiempo real
+            const validarPoliticasEnTiempoReal = () => {
+                const politicasCheckbox = document.querySelector('input[name="politicasPrivacidad"]');
+                const errorMessage = document.getElementById('errorPoliticas');
+
+                // Función para actualizar el mensaje de error cuando cambia el estado del checkbox
+                const updateErrorMessage = () => {
+                    errorMessage.textContent = politicasCheckbox.checked ? "" : "Debes aceptar las políticas de Ramon";
+                    errorMessage.style.display = politicasCheckbox.checked ? 'none' : 'block';
+                };
+
+                // Llamar a la función de actualización cuando el checkbox cambia de estado
+                politicasCheckbox.addEventListener('change', updateErrorMessage);
+
+                // Ocultar el mensaje de error al cargar la página
+                errorMessage.style.display = 'none';
+            };
+
+            // Función para validar si se ha seleccionado la opción de residente en tiempo real
+            const validarResidenciaEnTiempoReal = () => {
+                const residenteRadioButtons = document.querySelectorAll('input[name="opció"]');
+                const errorMessage = document.getElementById('errorRadio');
+
+                // Función para actualizar el mensaje de error cuando cambia el estado de los radio buttons
+                const updateErrorMessage = () => {
+                    let seleccionado = false;
+                    residenteRadioButtons.forEach(radioButton => {
+                        if (radioButton.checked) {
+                            seleccionado = true;
+                        }
+                    });
+                    errorMessage.textContent = seleccionado ? "" : "Debes seleccionar una opción";
+                    errorMessage.style.display = seleccionado ? 'none' : 'block';
+                };
+
+                // Llamar a la función de actualización cuando cambie el estado de los radio buttons
+                residenteRadioButtons.forEach(radioButton => {
+                    radioButton.addEventListener('change', updateErrorMessage);
+                });
+
+                // Ocultar el mensaje de error al cargar la página
+                errorMessage.style.display = 'none';
+            };
+
+            // Llamar a las funciones para validar políticas de privacidad y residencia en tiempo real
+            validarPoliticasEnTiempoReal();
+            validarResidenciaEnTiempoReal();
+
+            
+        });
+
+
+
+    const validarRadio = () => {
+        let elements = document.querySelectorAll("#opció input");
+        let message = document.getElementById("errorRadio");
+        for (let e = 0; e < elements.length; e++) {
+            if (elements[e].checked) {
+                message.textContent = "";
+                message.style.display = "none";
+                return true;
+            }
+        }
+        message.textContent = "Debes seleccionar una opción";
+        message.style.display = "block";
+        return false;
+    }
+
+    const validarForm = () => {
+        let result = true;
+        result = validar("#nom", /^[a-zA-ZÀ-ÿ']{3,}(?: [a-zA-ZÀ-ÿ']{2,}){0,2}(?: [a-zA-ZÀ-ÿ']{3,}){1,2}$/, "errorNombre") && result;
+        result = validar("#apellidos", /^[a-zA-ZÀ-ÿ']{3,}(?: [a-zA-ZÀ-ÿ']{2,}){0,2}(?: [a-zA-ZÀ-ÿ']{3,}){1,2}$/, "errorApellidos") && result;
+        result = validar("#mail", /[a-z]{3,}(\d*|(([._])[a-z]+)?(\3[a-z]+)?)@[a-z]{3,}[.][a-z]{2,4}/, "errorMail") && result;
+        result = validarRadio() && result;
+        result = validarFormato() && result;
+        result = validarFoto() && result; // Nueva validación para la foto
+        result = validarPoliticas() && result;
+        // Verificar si falta el apellido y actualizar el mensaje de error si es necesario
+    const apellidoInput = document.querySelector('#apellidos input');
+    const apellidoErrorMessage = document.getElementById('errorApellidos');
+    if (apellidoInput.value.trim() === '') {
+        apellidoErrorMessage.textContent = "Falta el apellido";
+        apellidoErrorMessage.style.display = "block";
+        result = false;
+    } else {
+        apellidoErrorMessage.textContent = "";
+        apellidoErrorMessage.style.display = "none";
+    }
+
+    // Verificar si falta el correo electrónico y actualizar el mensaje de error si es necesario
+    const emailInput = document.querySelector('#mail input');
+    const emailErrorMessage = document.getElementById('errorMail');
+    if (emailInput.value.trim() === '') {
+        emailErrorMessage.textContent = "Falta el correo electrónico";
+        emailErrorMessage.style.display = "block";
+        result = false;
+    } else {
+        emailErrorMessage.textContent = "";
+        emailErrorMessage.style.display = "none";
+    }
+
+    return result;
+    }
+
+    const validarPoliticas = () => {
+            let politicasCheckbox = document.querySelector('input[name="politicasPrivacidad"]');
+            if (!politicasCheckbox.checked) {
+                document.getElementById("errorPoliticas").style.display = "block";
+                return false;
+            }
+            return true;
+        }
+
+
+    const validarFoto = () => {
+        let fileInput = document.querySelector('input[type="file"]');
+        let errorMessage = document.getElementById('errorFoto');
+        if (fileInput.files.length === 0) {
+            errorMessage.textContent = "Debes subir una foto.";
+            errorMessage.style.display = "block";
+            return false;
+        } else {
+            errorMessage.style.display = "none";
+            return true;
+        }
+    }
+
+    function validarFormato() {
+    var fechaInput = document.getElementById("fechaNacimientoInput").value;
+
+    // Validar el formato de la fecha
+    var formatoValido = /^\d{4}-\d{2}-\d{2}$/;
+    if (!formatoValido.test(fechaInput)) {
+        document.getElementById("mensajeErrorFormato").textContent = "El formato de fecha debe ser AAAA-MM-DD";
+        document.getElementById("mensajeErrorFormato").style.display = "block";
+        return false;
+    }
+
+    // Obtener el año, mes y día de la fecha de nacimiento
+    var partesFecha = fechaInput.split("-");
+    var año = parseInt(partesFecha[0], 10);
+    var mes = parseInt(partesFecha[1], 10) - 1; // Restar 1 al mes porque los meses en JavaScript van de 0 a 11
+    var dia = parseInt(partesFecha[2], 10);
+
+    // Crear un objeto Date y verificar si es válido
+    var fechaNacimiento = new Date(año, mes, dia);
+    if (isNaN(fechaNacimiento.getTime())) {
+        document.getElementById("mensajeErrorFormato").textContent = "La fecha ingresada no es válida";
+        document.getElementById("mensajeErrorFormato").style.display = "block";
+        return false;
+    }
+
+    // Verificar si el usuario es mayor de 18 años
+    var hoy = new Date();
+    var edad = hoy.getFullYear() - año;
+    if (hoy.getMonth() < mes || (hoy.getMonth() === mes && hoy.getDate() < dia)) {
+        edad--; // Si no ha pasado su cumpleaños este año, restar 1 a la edad
+    }
+    if (edad < 18) {
+        document.getElementById("mensajeErrorEdad").textContent = "Has de ser major d'edad";
+        document.getElementById("mensajeErrorEdad").style.display = "block";
+        return false;
+    }
+
+    // Reiniciar los mensajes de error si la fecha es válida
+    document.getElementById("mensajeErrorFormato").style.display = "none";
+    document.getElementById("mensajeErrorEdad").style.display = "none";
+    return true;
+}
+
+
+
+
+    const icons = document.querySelectorAll('.icon');
+
+    icons.forEach(icon => {
+        icon.addEventListener('click', () => {
+            // Quita la clase 'icon-large' de todos los íconos
+            icons.forEach(icon => icon.classList.remove('icon-large'));
+            // Añade la clase 'icon-large' solo al ícono clickeado
+            icon.classList.add('icon-large');
+        });
+    });
+
+    function validarFormulario() {
+        // Obtener todos los checkboxes
+        const checkboxes = document.querySelectorAll('input[type="checkbox"][name="nameI"]');
+        let checkedCount = 0;
+
+        // Contar cuántos checkboxes están seleccionados
+        checkboxes.forEach(function(checkbox) {
+            if (checkbox.checked) {
+                checkedCount++;
+            }
+        });
+
+        // Validar si se han seleccionado al menos dos checkboxes
+        if (checkedCount < 2) {
+            // Mostrar mensaje de error
+            document.getElementById('errorIngredients').textContent = "Debes seleccionar al menos dos ingredientes";
+            return false; // Evitar el envío del formulario
+        }
+
+        // Reiniciar el mensaje de error si se seleccionan suficientes checkboxes
+        document.getElementById('errorIngredients').textContent = "";
+        return true; // Permitir el envío del formulario
+    }
+
+    // colores 
+
+    const redRange = document.getElementById('red');
+        const greenRange = document.getElementById('green');
+        const blueRange = document.getElementById('blue');
+        const colorPreview = document.getElementById('color-preview');
+
+        function updateColor() {
+            const redValue = redRange.value;
+            const greenValue = greenRange.value;
+            const blueValue = blueRange.value;
+            const color = `rgb(${redValue}, ${greenValue}, ${blueValue})`;
+            colorPreview.style.backgroundColor = color;
+        }
+
+        redRange.addEventListener('input', updateColor);
+        greenRange.addEventListener('input', updateColor);
+        blueRange.addEventListener('input', updateColor);
+
+        // Actualizar el color inicial
+        updateColor();
+</script>
+
+</body>
+</html>
